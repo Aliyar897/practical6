@@ -25,14 +25,3 @@ jobs:
       - name: Run Unit Tests
         run: |
           python -m unittest discover -s . -p "*test*.py"
-
-      - name: Log in to Azure
-        uses: azure/login@v1
-        with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}'
-
-      - name: Install Azure ML extension
-        run: az extension add --name ml
-
-      - name: Submit Azure ML Job
-        run: az ml job create -f experimentation/job.yml --resource-group practical6 --workspace-name practical6
